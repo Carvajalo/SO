@@ -1,6 +1,6 @@
 # README
 
-### lab-01
+### Entregable 03
 
 # * IMPORTANTE * !
 
@@ -8,9 +8,8 @@
 
 < Orlando Meriño > - < 200091757 >
 
-Link a la applicación en el servidor (Heroku o el servicio de tu preferencia)
-
-https://tweeterm-m.herokuapp.com/
+Instrucciones:
+Para iniciar la aplicación utilizar el comando "rails s". Las peticiones a los endpoints se pueden realizar por medio de la URL o en HTTPIE.
 
 * Información relevante
 
