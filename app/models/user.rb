@@ -3,9 +3,11 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
 
   #Funtions: 
-  def self.authenticate(email, user_token)
+  def self.authenticate(user_token)
     # option: where("email = #{email} AND authentication_token = #{user_token}")
-    where("email = ? AND authentication_token = ?", email, user_token)
+    # where("email = ? AND authentication_token = ?", email, user_token)
+    find_by(authentication_token: user_token)
+  
   end
 
   

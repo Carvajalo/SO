@@ -15,11 +15,11 @@ module Api
             #GET :3000/api/v1/tweets/:id -a gmail@gmail.com:password
             def basic_auth
                 #params[:name, :username, :email, :password, #:confirmationpassword#]
-                authenticate_with_http_basic do |email, user_token|
-                    user = User.authenticate(email, user_token)
-                    unless user.empty?
+                authenticate_with_http_basic do |user_token|
+                    user = User.authenticate(user_token)
+                    if user
                         #byebug
-                        @current_user = User.find_by_email(email)
+                        @current_user = user
                     else
                         head :unauthorized
                     end
