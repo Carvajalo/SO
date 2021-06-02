@@ -21,6 +21,8 @@
 
 
 <h1> Tweet Index  </h1>
+<%= link_to('MailBox', conversations_path())%>
+
 <div>
     <% if user_signed_in? %>
         <%= link_to('Followers', followers_path(id: current_user.id))%>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
@@ -28,7 +30,9 @@
     <% end %>
 </div>
 
+
 <% @tweets.each do |tweet| %>
+
     <br/>
     <b>  ------------------------- </b>
     <p><%= tweet.text %> <%= link_to('View Tweet', tweet_path(tweet.id))%>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp 
