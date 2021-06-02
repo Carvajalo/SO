@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'tweets#index'
+  #root 'tweets#index'
+  root 'conversations#index'
   #get '/tweets', to: 'tweets#index'
   resources :tweets
   resources :relationships, only: [:create, :destroy]
   get 'followers', to: 'relationships#followers'
   get 'following', to: 'relationships#show'
+
+  resources :conversations do
+    resources :messages
+  end
 
 
   namespace :api do
