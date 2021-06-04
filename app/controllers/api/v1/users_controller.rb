@@ -6,7 +6,7 @@ module Api
               begin
             @user=User.new(user_params)
             if @user.save
-              render json: {message: "User created", email: @user.email, status: 200}
+              render json: {user: @user, message: "User created",  status: 200}
             else
                 render json: { error:"User already exist.", status: 400 } 
                       end
@@ -25,13 +25,24 @@ module Api
           end
         end
               
+        # t.belongs_to :liked, class_name: "Tweet"
+        # t.belongs_to :by, class_name: "User"
+
+        def destroy
+          current_user.unfollow(@user)
+          redirect_back fallback_location: "/"
+        end
   
-              private
-  
-              
-              def user_params
-                  params.permit(:email,:password)
-              end
+        private
+        def user_params
+            params.permit(:email,:password, :username, :name)
+        end
+
+        def tweet_params
+            params.require(:tweet).permit(:id)
+        end
+
+
           end        
       end    
   end

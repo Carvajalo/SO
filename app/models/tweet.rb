@@ -7,7 +7,9 @@ class Tweet < ApplicationRecord
 
 
     #Associations
+    #User:Tweet
     belongs_to :user
+
 
     #Restrictions
 

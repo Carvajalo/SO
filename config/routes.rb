@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'follower', to: 'relationships#follower'
       get 'following', to: 'relationships#following'
       get 'tweets_list', to: 'relationships#tweets_list'
+      post 'like', to: 'likes#create'
 
 
     end

@@ -3,13 +3,17 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
 
   #Funtions: 
-  def self.authenticate(user_token)
-    # option: where("email = #{email} AND authentication_token = #{user_token}")
-    # where("email = ? AND authentication_token = ?", email, user_token)
-    find_by(authentication_token: user_token)
+  # def self.authenticate(user_token)
+  #   # option: where("email = #{email} AND authentication_token = #{user_token}")
+  #   # where("email = ? AND authentication_token = ?", email, user_token)
+  #   find_by(authentication_token: user_token)
   
-  end
+  # end
 
+  def self.authenticate(email, user_token)
+    # option: where("email = #{email} AND authentication_token = #{user_token}")
+    where("email = ? AND authentication_token = ?", email, user_token)
+  end
   
   #validations
   validates :email, uniqueness: true
@@ -22,6 +26,12 @@ class User < ApplicationRecord
 
   has_many :following, through: :following_users, source: :followed
   has_many :followers, through: :user_followers, source: :follower
+
+  #User:Tweet
+  has_many :tweets
+
+  #User:Tweet_Liked
+ 
 
 
   def follow(user)
@@ -36,7 +46,6 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
-  has_many :tweets
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

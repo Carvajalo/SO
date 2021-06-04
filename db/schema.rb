@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_073549) do
+ActiveRecord::Schema.define(version: 2021_06_04_081253) do
+
+  create_table "likes", id: false, force: :cascade do |t|
+    t.integer "liked_id"
+    t.integer "by_id"
+    t.index ["by_id"], name: "index_likes_on_by_id"
+    t.index ["liked_id", "by_id"], name: "index_likes_on_liked_id_and_by_id", unique: true
+    t.index ["liked_id"], name: "index_likes_on_liked_id"
+  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
@@ -28,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_073549) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "likes_count", default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|
