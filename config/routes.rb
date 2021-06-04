@@ -25,8 +25,16 @@ Rails.application.routes.draw do
       get 'follower', to: 'relationships#follower'
       get 'following', to: 'relationships#following'
       get 'tweets_list', to: 'relationships#tweets_list'
+      get 'hashtag', to: 'tweets#src_hashtag'
+      resources :conversations,  only: [:index, :create]
+      #resources :messages,  only: [:index, :show, :create]
+      
 
-
+      get 'conversations/messages', to: 'messages#index'
+      get 'conversations/message', to: 'messages#show'
+      post 'conversations/newmsg', to: 'messages#create'
+      # get 'conversations', to: 'conversations#index'
+      # post 'conversation', to: 'conversations#create'
     end
   end
 
