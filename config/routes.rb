@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get 'following', to: 'relationships#following'
       get 'tweets_list', to: 'relationships#tweets_list'
       post 'like', to: 'likes#create'
-
+      get 'hashtag', to: 'tweets#src_hashtag'
 
     end
   end

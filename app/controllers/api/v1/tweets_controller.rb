@@ -40,6 +40,22 @@ module Api
                     render error: {error: "message_error", status: 400}
                  end
             end
+
+            
+            def src_hashtag
+                @hashtag = []
+                @texto = []
+                @tweet = Tweet.all
+                @tweet.each do |tweet|
+                    @hashtag = tweet.text.to_s.scan(/#\w+/).map{|name| name.gsub("#", "")}  
+                    @hashtag.each do |hashtag|
+                        if hashtag == params[:text]
+                            @texto << tweet
+                        end
+                    end  
+                end
+                render json: @texto
+            end
         
             #DELETE /api/v1/tweets/:id
             def destroy
