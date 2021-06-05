@@ -11,6 +11,10 @@
 Instrucciones:
 Para iniciar la aplicación utilizar el comando "rails s". Las peticiones a los endpoints se pueden realizar por medio de la URL o en HTTPIE.
 
+Documentación:
+Se puede observar a través del siguiente link:
+https://documenter.getpostman.com/view/16066621/TzY3Bare
+
 * Información relevante
 
 This README would normally document whatever steps are necessary to get the
