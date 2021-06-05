@@ -22,6 +22,21 @@ module Api
                 # end
             end
         
+            def src_hashtag
+                @hashtag = []
+                @texto = []
+                @tweet = Tweet.all
+                @tweet.each do |tweet|
+                    @hashtag = tweet.text.to_s.scan(/#\w+/).map{|name| name.gsub("#", "")}  
+                    @hashtag.each do |hashtag|
+                        if hashtag == params[:text]
+                            @texto << tweet
+                        end
+                    end  
+                end
+                render json: @texto
+            end
+
             #POST /api/v1/tweets
             #params(text: "", username: "", user_id: "")
             def create
@@ -38,7 +53,7 @@ module Api
                         message_error = message_error + " " + error
                     end
                     render error: {error: "message_error", status: 400}
-                 end
+                end
             end
 
             
@@ -74,7 +89,6 @@ module Api
             def get_tweet
                 @tweet = Tweet.find(params[:id])
             end
-
 
         end
     end
