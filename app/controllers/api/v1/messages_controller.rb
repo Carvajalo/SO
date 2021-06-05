@@ -13,13 +13,13 @@ module Api
             
 
             def show
-                @message = Conversation.message.find(params[:id])
+                @message = @conversation.messages.find(params[:id])
                 render json: @message
             end
 
             def create
-                @message = @conversation.message.new(message_params)
-                @message.user_id = current_user.id
+                @message = @conversation.messages.new(message_params)
+                # @message.user_id = current_user.id
                 if @message.save
                     render json: @message, status: :ok
 
@@ -34,7 +34,7 @@ module Api
 
             private
             def message_params
-              params.require(:message).permit(:body)
+              params.require(:message).permit(:body,:conversation_id, :user_id)
             end
 
 
