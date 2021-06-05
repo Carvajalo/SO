@@ -28,7 +28,6 @@ Rails.application.routes.draw do
       post 'like', to: 'likes#create'
       get 'hashtag', to: 'tweets#src_hashtag'
 
-      get 'hashtag', to: 'tweets#src_hashtag'
       resources :conversations,  only: [:index, :create]
       #resources :messages,  only: [:index, :show, :create]
       
