@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_06_04_081253) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 2021_06_04_081253) do
   end
 
   create_table "likes", id: false, force: :cascade do |t|
-    t.integer "liked_id"
-    t.integer "by_id"
+    t.bigint "liked_id"
+    t.bigint "by_id"
     t.index ["by_id"], name: "index_likes_on_by_id"
     t.index ["liked_id", "by_id"], name: "index_likes_on_liked_id_and_by_id", unique: true
     t.index ["liked_id"], name: "index_likes_on_liked_id"
@@ -29,8 +32,8 @@ ActiveRecord::Schema.define(version: 2021_06_04_081253) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.integer "conversation_id"
-    t.integer "user_id"
+    t.bigint "conversation_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
